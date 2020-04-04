@@ -11,10 +11,13 @@
 <script>
 import Standup from './Standup.vue';
 import { computed } from '@vue/composition-api';
+import { useStore } from '../helpers/useStore';
 export default {
    name: 'StandupList',
-   setup(props, { root: { $store: store } }){
-       const standups = computed(()=>store.getters.standups);
+   setup(){
+
+       const store = useStore();
+       const standups = computed(()=> store.getters.standups );
 
       return {
           standups,

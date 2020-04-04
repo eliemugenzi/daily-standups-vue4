@@ -27,10 +27,12 @@
 <script>
 
 import { reactive } from '@vue/composition-api';
+import { useStore } from '../helpers/useStore';
 
 export default {
   name: 'NewStandup',
-  setup(props, {root: { $store: store } }){
+  setup(){
+      const store = useStore();
       const { dispatch } = store;
      const state= reactive({
          author: null,
