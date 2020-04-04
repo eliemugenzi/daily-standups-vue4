@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h3 class="center">Welcome to Daily Standups</h3>
+    <h3 class="center">Welcome to Standup Aline</h3>
     <div class="standup__container">
       <standup-list />
       <new-standup />
