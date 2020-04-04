@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h3 class="center">Welcome to Daily Standups</h3>
+    <div class="standup__container">
+      <standup-list />
+      <new-standup />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import StandupList from './components/StandupList.vue';
+import NewStandup from './components/NewStandup.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    StandupList,
+    NewStandup,
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
+  margin: 20px 10%;
+
+  .message{
+    margin: auto 10%;
+  }
+
+  .center{
+    text-align: center;
+  }
+
+  .standup__container{
+    display: flex;
+    justify-content: space-around;
+  }
 }
 </style>
