@@ -5,17 +5,33 @@
               <b-field 
               label="Remind me your name" 
               label-position="on-border"
-              :type="errorMessages.author.isDanger ? 'isDanger': ''"
+              :type="errorMessages.author.isDanger ? 'is-danger': null"
+              :message="errorMessages.author.isDanger ? errorMessages.author.message : null"
               >
                   <b-input type="text" v-model="state.author"></b-input>
               </b-field>
-              <b-field label="What did you complete yesterday?" label-position="on-border">
+              <b-field 
+              label="What did you complete yesterday?"
+               label-position="on-border"
+               :type="errorMessages.done.isDanger ? 'is-danger' : null"
+               :message="errorMessages.done.isDanger ? errorMessages.done.message : null"
+               >
                   <b-input type="textarea" v-model="state.done"></b-input>
               </b-field>
-              <b-field label="What do you commit to do today?" label-position="on-border">
+              <b-field 
+              label="What do you commit to do today?"
+               label-position="on-border"
+               :type="errorMessages.todo.isDanger ? 'is-danger' : null"
+               :message="errorMessages.todo.isDanger ? errorMessages.todo.message : null"
+               >
                   <b-input type="textarea" v-model="state.todo"></b-input>
               </b-field>
-              <b-field label="Any Blockers?" label-position="on-border">
+              <b-field 
+              label="Any Blockers?"
+               label-position="on-border"
+               :type="errorMessages.blockers.isDanger ? 'is-danger' : null"
+               :message="errorMessages.blockers.isDanger ? errorMessages.blockers.message : null"
+               >
                   <b-input type="textarea" v-model="state.blockers"></b-input>
               </b-field>
               <b-button native-type="submit">Submit</b-button>
@@ -63,6 +79,10 @@ export default {
 
 
      const submitStandup = ()=>{
+         errorMessages.author.isDanger=false;
+         errorMessages.done.isDanger=false;
+         errorMessages.todo.isDanger=false;
+         errorMessages.blockers.isDanger=false;
        if(!state.author){
            errorMessages.author.isDanger=true;
            errorMessages.author.message="This field is required"
