@@ -12,11 +12,16 @@
 import StandupList from './components/StandupList.vue';
 import NewStandup from './components/NewStandup.vue';
 
+import { provideStore } from './helpers/useStore';
+
 export default {
   name: 'App',
   components: {
     StandupList,
     NewStandup,
+  },
+  setup(props, { root: { $store: store } }){
+    provideStore(store);
   }
 }
 </script>
