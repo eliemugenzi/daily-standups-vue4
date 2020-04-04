@@ -1,4 +1,4 @@
-# vuex-composition
+# Standup Aline
 
 ## Project setup
 ```
