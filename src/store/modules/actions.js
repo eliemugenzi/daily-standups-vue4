@@ -1,7 +1,7 @@
 
 const actions = {
-  setNewStandup(standup, {commit}){
-      commit('STANDUP SUBMITTED', standup);
+  setNewStandup({commit}, standup){
+      commit('STANDUP_SUBMITTED', standup);
   },
 };
 

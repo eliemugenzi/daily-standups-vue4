@@ -2,7 +2,11 @@
   <main class="new-standup">
       <div class="new-standup__container">
           <form @submit.prevent="submitStandup">
-              <b-field label="Remind me your name" label-position="on-border">
+              <b-field 
+              label="Remind me your name" 
+              label-position="on-border"
+              :type="errorMessages.author.isDanger ? 'isDanger': ''"
+              >
                   <b-input type="text" v-model="state.author"></b-input>
               </b-field>
               <b-field label="What did you complete yesterday?" label-position="on-border">
@@ -26,7 +30,8 @@ import { reactive } from '@vue/composition-api';
 
 export default {
   name: 'NewStandup',
-  setup(){
+  setup(props, {root: { $store: store } }){
+      const { dispatch } = store;
      const state= reactive({
          author: null,
          done: null,
@@ -34,13 +39,59 @@ export default {
          blockers: null
      });
 
+     const errorMessages = reactive({
+         author: {
+             isDanger: false,
+             message: null
+         },
+         done: {
+             isDanger: false,
+             message: null,
+         },
+         todo: {
+             isDanger: false,
+             message: null,
+         },
+         blockers: {
+             isDanger: false,
+             message: null,
+         },
+     });
+
+
+
      const submitStandup = ()=>{
-       console.log(state.author);
+       if(!state.author){
+           errorMessages.author.isDanger=true;
+           errorMessages.author.message="This field is required"
+       }
+
+       else if(!state.done){
+           errorMessages.done.isDanger=true;
+           errorMessages.done.message="This field is required";
+       }
+
+       else if(!state.todo){
+           errorMessages.todo.isDanger=true;
+           errorMessages.todo.message="This field is required";
+       }
+
+       else if(!state.blockers){
+           errorMessages.blockers.isDanger=true;
+           errorMessages.blockers.message="This field is required";
+       }
+
+       else{
+          dispatch('setNewStandup', {
+           ...state,
+       });
+       }
      }
 
      return {
          state,
          submitStandup,
+         errorMessages,
      }
   }
 }
