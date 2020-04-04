@@ -6,7 +6,6 @@ const mutations = {
           ...payload,
           id: state.standups.length +1,
       } , ...state.standups];
-      console.log(state.standups);
   }
 };
 
